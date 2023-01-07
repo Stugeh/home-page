@@ -1,0 +1,23 @@
+@use 'variables';
+
+html,
+body {
+  height: 100%;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: variables.$light;
+    color: variables.$primary;
+  font-size: xx-large;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
