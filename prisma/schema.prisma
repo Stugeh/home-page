@@ -1,12 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
     provider = "prisma-client-js"
 }
 
-// NOTE: When using postgresql, mysql or sqlserver, 
-// uncomment the @db.Text annotations in model Account below
 datasource db {
     provider = "mongodb"
     url      = env("DATABASE_URL")
@@ -57,4 +52,39 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Category {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+    pages Page[]
+}
+
+model Page {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+    category Category @relation(fields: [categoryId], references: [id])
+    categoryId String @db.ObjectId
+    blockIds String[] @db.ObjectId
+    blocks Block[] @relation(fields: [blockIds], references: [id])
+}
+
+model Block {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    order Int
+    blockName String
+    blockType String
+    pageIds String[] @db.ObjectId
+    pages Page[] @relation(fields: [pageIds], references: [id])
+    imagePaths String[]
+    textFields TextField[]
+}
+
+model TextField {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    fieldType String
+    fieldName String
+    content String
+    block Block @relation(fields: [blockId], references: [id])
+    blockId String @db.ObjectId
 }
