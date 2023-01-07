@@ -1,8 +1,10 @@
-
 export default function Header() {
   return (
-    <div className="header">
-        
-    </div>
+    <header className="header">
+      <div className="logo">
+        <h3>Tuukka</h3>
+        <h1>Veteli</h1>
+      </div>
+    </header>
   );
 }
