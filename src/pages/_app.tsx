@@ -1,17 +1,16 @@
-import { type Session, } from 'next-auth';
-import { SessionProvider, } from 'next-auth/react';
-import { type AppType, } from 'next/app';
+import '../styles/styles.scss';
 
-import { api, } from '../utils/api';
+import { type Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
+import { type AppType } from 'next/app';
+import { api } from '../utils/api';
 
-import React from 'react';
 import Layout from '../components/layout/layout';
-import '../styles/globals.css';
 
 const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
+  Component, 
   pageProps: { session, ...pageProps },
-},) => {
+}) => {
   return (
     <SessionProvider session={session}>
       <Layout>
@@ -21,4 +20,4 @@ const MyApp: AppType<{ session: Session | null }> = ({
   );
 };
 
-export default api.withTRPC(MyApp,);
+export default api.withTRPC(MyApp);
